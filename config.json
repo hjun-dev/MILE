@@ -1,0 +1,61 @@
+{
+    "global_seed": 42,
+    "discrete": {
+        "env_name": "LunarLander-v2",
+        "policy_type": "MlpPolicy",
+        "net_arch": [64, 64],
+        "env_params": {
+            "continuous": false,
+            "gravity": -10.0,
+            "enable_wind": true,
+            "wind_power": 5.0,
+            "turbulence_power": 0.5
+        },
+        "paths": {
+            "suboptimal_policy": "./discrete_models/suboptimal_dqn.zip",
+            "expert_policy": "./discrete_models/expert_dqn.zip",
+            "initial_mental_model": "./discrete_models/initial_mental_model.pth",
+            "final_trained_policy": "./discrete_models/final_mile_policy.zip",
+            "final_mental_model": "./discrete_models/final_mile_mental_model.pth"
+        },
+        "mile_params": {
+            "cost": 1.0,
+            "cdf_scale": 1.0
+        }
+    },
+    "continuous": {
+        "env_name": "CarRacing-v2",
+        "policy_type": "CnnPolicy",
+        "net_arch": [256, 256],
+        "env_params": {
+            "continuous": true,
+            "domain_randomize": true
+        },
+        "paths": {
+            "suboptimal_policy": "./continuous_models/suboptimal_sac.zip",
+            "expert_policy": "./continuous_models/expert_sac.zip",
+            "initial_mental_model": "./continuous_models/initial_mental_model.zip",
+            "final_trained_policy": "./continuous_models/final_mile_policy.zip",
+            "final_mental_model": "./continuous_models/final_mile_mental_model.zip"
+        },
+        "mile_params": {
+            "cost": 50.0,
+            "cdf_scale": 10.0
+        }
+    },
+    "rl_training": {
+        "suboptimal_steps": 100000,
+        "expert_steps": 5000000
+    },
+    "bc_training": {
+        "num_rollouts": 50,
+        "num_epochs": 30
+    },
+    "mile_training": {
+        "num_rounds": 5,
+        "episodes_per_round": 15,
+        "epochs_per_round": 100,
+        "batch_size": 256,
+        "learning_rate": 0.0001
+    }
+}
