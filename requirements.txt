@@ -1,0 +1,5 @@
+gymnasium==0.29.1
+imitation==1.0.1
+numpy==2.4.6
+stable_baselines3==2.2.1
+torch==2.12.0

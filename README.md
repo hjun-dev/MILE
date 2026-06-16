@@ -11,15 +11,27 @@
 > **Note:** 본 프레임워크의 핵심 로직과 파이프라인 설계는 직접 구현하였으며, 코드의 세부 구현 과정에서 AI의 기술적 도움(디버깅 및 최적화)을 일부 참고하였습니다.
 
 ## 학습 방법 (예시: CarRacing-v2 env)
-1. **Config 설정:** `config.json`에서 환경별 하이퍼파라미터 및 `net_arch`를 설정합니다.
-2. **사전 학습:** ```bash
-   python scripts/train_initial.py --env_type continuous --frame_stack 4```
-3. **멘탈 모델 초기화(BC):** ```bash
-   python scripts/create_bc.py --env_type continuous --frame_stack 4```
-4. **MILE 학습:** ```bash
-   python scripts/train_mile.py --env_type continuous --frame_stack 4```
-5. **테스트:** ```bash
-   python scripts/test_model.py --env_type continuous --frame_stack 4 --round 5```
+1. **의존성 설치:**
+```bash
+   pip install -r requirements.txt
+```
+2**Config 설정:** `config.json`에서 환경별 하이퍼파라미터 및 `net_arch`를 설정합니다.
+3**사전 학습:** 
+```bash
+   python scripts/train_initial.py --env_type continuous --frame_stack 4
+```
+4**멘탈 모델 초기화(BC):** 
+```bash
+   python scripts/create_bc.py --env_type continuous --frame_stack 4
+```
+5**MILE 학습:** 
+```bash
+   python scripts/train_mile.py --env_type continuous --frame_stack 4
+```
+6**테스트:** 
+```bash
+   python scripts/test_model.py --env_type continuous --frame_stack 4 --round 5
+```
 
 ## 환경 정보
 * **LunarLander-v2 (Discrete, MLP, DQN)**
