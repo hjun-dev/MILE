@@ -15,20 +15,20 @@
 ```bash
    pip install -r requirements.txt
 ```
-2**Config 설정:** `config.json`에서 환경별 하이퍼파라미터 및 `net_arch`를 설정합니다.
-3**사전 학습:** 
+2. **Config 설정:** `config.json`에서 환경별 하이퍼파라미터 및 `net_arch`를 설정합니다.
+3. **사전 학습:** 
 ```bash
    python scripts/train_initial.py --env_type continuous --frame_stack 4
 ```
-4**멘탈 모델 초기화(BC):** 
+4. **멘탈 모델 초기화(BC):** 
 ```bash
    python scripts/create_bc.py --env_type continuous --frame_stack 4
 ```
-5**MILE 학습:** 
+5. **MILE 학습:** 
 ```bash
    python scripts/train_mile.py --env_type continuous --frame_stack 4
 ```
-6**테스트:** 
+6. **테스트:** 
 ```bash
    python scripts/test_model.py --env_type continuous --frame_stack 4 --round 5
 ```

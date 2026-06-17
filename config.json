@@ -44,8 +44,8 @@
         }
     },
     "rl_training": {
-        "suboptimal_steps": 100000,
-        "expert_steps": 5000000
+        "suboptimal_steps": 1000000,
+        "expert_steps": 4000000
     },
     "bc_training": {
         "num_rollouts": 50,

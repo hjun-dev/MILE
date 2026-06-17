@@ -5,6 +5,7 @@ from torch.utils.data import Dataset
 import gymnasium as gym
 import numpy as np
 
+from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import DummyVecEnv, VecFrameStack, VecTransposeImage
 from imitation.data.wrappers import RolloutInfoWrapper
 
@@ -40,7 +41,9 @@ def create_env(env_name, env_params, env_type, frame_stack=1, for_imitation=Fals
         kwargs = env_params.copy()
         if render_mode:
             kwargs['render_mode'] = render_mode
+
         env = gym.make(env_name, **kwargs)
+        env = Monitor(env)
         
         if env_type == "continuous":
             env = Float32ActionWrapper(env)
@@ -53,11 +56,14 @@ def create_env(env_name, env_params, env_type, frame_stack=1, for_imitation=Fals
         return env
 
     venv = DummyVecEnv([_init])
-    venv = VecTransposeImage(venv) 
-    
-    # args로 넘겨받은 스택 값에 따라 자동 프레임 스태킹 (CarRacing 등에서 필수)
+
+    # CarRacing처럼 이미지 observation을 쓰는 경우에만 적용
+    if env_type == "continuous":
+        venv = VecTransposeImage(venv)
+
     if frame_stack > 1:
         venv = VecFrameStack(venv, n_stack=frame_stack)
+
     return venv
 
 class DictDataset(Dataset):
